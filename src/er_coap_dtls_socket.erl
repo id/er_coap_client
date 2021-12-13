@@ -45,7 +45,7 @@ handle_cast(accept, State = #state{sock=ListenSocket}) ->
             % create a new acceptor to maintain a set of waiting acceptors
             %%coap_dtls_listen:start_socket(),
             % establish the connection
-            {ok, SslSocket} = ssl:ssl_handshake(Socket),
+            {ok, SslSocket} = ssl:handshake(Socket),
             % FIXME: where do we get the chanel id?
             {ok, SupPid, Pid} = er_coap_channel_sup:start_link(self(), {{0,0,0,0}, 0}),
             {noreply, State#state{sock=SslSocket, supid=SupPid, channel=Pid}};
