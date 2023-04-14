@@ -1,0 +1,25 @@
+---
+name: ci
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  ci:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        otp:
+          - 24
+          - 25
+    steps:
+      - uses: actions/checkout@v3
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{matrix.otp}}
+      - run: make deps build test
