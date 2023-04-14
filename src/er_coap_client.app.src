@@ -1,5 +1,5 @@
 {application, er_coap_client, [
-	{description, ""},
+	{description, "Pure Erlang implementation of the Constrained Application Protocol (CoAP)"},
 	{vsn, git},
 	{modules, []},
 	{registered, []},
